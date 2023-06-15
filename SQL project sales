@@ -1,20 +1,16 @@
---SELECT * FROM BIT_DB.customers
-
---WHERE length(order_id) = 6
---AND order_id <> 'Order ID'
 
 --How many orders were placed in January? 
---SELECT COUNT(*) FROM BIT_DB.JanSales
---WHERE length(orderID) = 6
---AND orderID <> 'Order ID';
---Used where clause to clean data of incorrect order id's, those containing more than 6 digits AND
---those just containing "Order ID"
+SELECT COUNT(*) FROM BIT_DB.JanSales
+WHERE length(orderID) = 6
+AND orderID <> 'Order ID';
+Used where clause to clean data of incorrect order id's, those containing more than 6 digits AND
+those just containing "Order ID"
 
 --How many of those orders were for an iPhone?
---SELECT COUNT(*), Product FROM BIT_DB.JanSales
---WHERE Product = 'iPhone'
---AND length(orderid) = 6 
---AND orderid <> 'Order ID';
+SELECT COUNT(*), Product FROM BIT_DB.JanSales
+WHERE Product = 'iPhone'
+AND length(orderid) = 6 
+AND orderid <> 'Order ID';
 
 --Customer account numbers for all the orders that were placed in February.
 SELECT DISTINCT customers.acctnum FROM BIT_DB.customers
