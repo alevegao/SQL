@@ -32,3 +32,38 @@ SELECT emp.LastName, emp.Firstname, cust.FirstName, cust.LastName, cust.Country,
 FROM chinook.employees emp 
 JOIN chinook.Customers cust ON cust.SupportRepId = emp.EmployeeId
 JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
+
+#8 --How many Invoices were there in 2009?
+SELECT COUNT(InvoiceDate) FROM chinook.invoices
+WHERE InvoiceDate LIKE '%2009%'
+
+#9 --What are the total sales for 2009?
+SELECT SUM(Total) FROM chinook.invoices
+WHERE InvoiceDate LIKE '%2009%'
+
+#10 --Write a query that includes the purchased track name with each invoice line ID.
+SELECT t.name, inv.InvoiceLineId FROM chinook.invoice_items inv
+JOIN chinook.tracks t
+ON t.TrackId = inv.TrackID
+
+#11 -- Write a query that includes the purchased track name AND artist name with each invoice line ID.
+SELECT ar.name as Artist, t.Name as Track, i.InvoiceLineId
+FROM chinook.Invoice_items i
+LEFT JOIN chinook.tracks t 
+ON i.TrackID=t.TrackID
+INNER JOIN chinook.albums a
+ON a.AlbumID=t.AlbumID
+LEFT JOIN chinook.artists ar
+ON ar.ArtistID=a.ArtistID;
+
+#12 --Provide a query that shows all the Tracks, and include the Album name, Media type, and Genre.
+SELECT t.name AS Song_Name, g.name AS Genre, a.Title AS Album,
+m.name AS Media_Type FROM chinook.tracks t
+LEFT JOIN chinook.albums a
+ON t.AlbumId = a.AlbumId
+JOIN chinook.media_types m
+ON t.MediaTypeId = m.MediaTypeId
+JOIN chinook.genres g
+ON t.GenreId = g.GenreId;
+
+
